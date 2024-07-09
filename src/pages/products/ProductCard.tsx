@@ -4,7 +4,7 @@ const { Meta } = Card;
 
 const ProductCard = ({ item }: any) => {
   const { thumbnail, name, description, price, rating }: TProduct = item;
-  console.log("item: ", item);
+  // console.log("item: ", item);
   const onCustomButtonClick = () => {};
   return (
     <Card

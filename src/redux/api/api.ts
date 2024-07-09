@@ -7,13 +7,14 @@ export const baseApi = createApi({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (options) => {
+        console.log("API options: ", options);
         const params = new URLSearchParams();
+        if (options.page) {
+          params.append("page", options.page);
+          console.log("API page: ", options.page);
+        }
         if (options.limit) {
           params.append("limit", options.limit);
-          // console.log("limit: ", options.limit);
-        }
-        if (options.skip) {
-          params.append("skip", options.skip);
           // console.log("skip: ", options.skip);
         }
 

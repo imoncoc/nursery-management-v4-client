@@ -13,7 +13,10 @@ const Navbar = () => {
         {/* <!-- Logo  --> */}
         <div className="z-30">
           {/* <img src="./images/logo-bookmark.svg" alt="" id="logo" /> */}
-          <NavLink to={"/"} className="font-bold text-3xl">
+          <NavLink
+            to={"/"}
+            className="font-bold text-3xl uppercase text-gray-500"
+          >
             Green<span className="text-lime-500">LN</span>
           </NavLink>
         </div>
@@ -21,7 +24,11 @@ const Navbar = () => {
         <div className="hidden items-center space-x-10 uppercase text-grayishBlue md:flex">
           <NavLink
             to={"/products"}
-            className="tracking-widest hover:text-softBlue"
+            className={({ isActive }) =>
+              isActive
+                ? " tracking-widest text-softBlue"
+                : "tracking-widest hover:text-softBlue"
+            }
           >
             Products
           </NavLink>
@@ -60,7 +67,12 @@ const Navbar = () => {
             fixed inset-0 z-20 flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 opacity-90 bg-veryDarkBlue`}
       >
         <div className="w-full py-3 text-center">
-          <NavLink to={"/products"} className="block hover:text-softBlue">
+          <NavLink
+            to={"/products"}
+            className={({ isActive }) =>
+              isActive ? " block text-softBlue" : "block hover:text-softBlue"
+            }
+          >
             Products
           </NavLink>
         </div>

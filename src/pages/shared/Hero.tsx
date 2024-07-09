@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section id="hero" className="overflow-x-hidden">
       {/* <!-- Container For Image & Content --> */}
-      <div className="container flex flex-col-reverse mx-auto p-6 lg:flex-row lg:mb-0">
+      <div className="container flex flex-col-reverse mx-auto mb-12 p-6 lg:flex-row lg:mb-0">
         {/* <!-- Content --> */}
         <div className="flex flex-col space-y-10 lg:mt-16 lg:w-1/2">
           <h1 className="text-3xl font-semibold text-center lg:text-6xl lg:text-left mt-5 lg:mt-0">

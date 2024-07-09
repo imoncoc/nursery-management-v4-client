@@ -12,7 +12,10 @@ const Footer = () => {
             alt=""
             className="mb-1"
           /> */}
-          <NavLink to={"/"} className="font-bold text-3xl mb-1">
+          <NavLink
+            to={"/"}
+            className="font-bold text-3xl mb-1 uppercase text-gray-500"
+          >
             Green<span className="text-lime-500">LN</span>
           </NavLink>
 

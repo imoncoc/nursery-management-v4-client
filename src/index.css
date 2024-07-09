@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-text-header {
+    @apply text-3xl font-semibold lg:text-6xl;
+}
+
+.custom-text-p {
+    @apply text-lg text-gray-400 lg:text-2xl;
+}

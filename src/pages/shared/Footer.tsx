@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="py-16 bg-veryDarkBlue">
@@ -10,19 +12,19 @@ const Footer = () => {
             alt=""
             className="mb-1"
           /> */}
-          <h2 className="font-bold text-3xl mb-1">
+          <NavLink to={"/"} className="font-bold text-3xl mb-1">
             Green<span className="text-lime-500">LN</span>
-          </h2>
+          </NavLink>
 
-          <a href="#features" className="uppercase hover:text-softBlue">
-            Features
-          </a>
-          <a href="#download" className="uppercase hover:text-softBlue">
+          <NavLink to={"/products"} className="uppercase hover:text-softBlue">
+            Products
+          </NavLink>
+          <NavLink to={"/#"} className="uppercase hover:text-softBlue">
             Download
-          </a>
-          <a href="#faq" className="uppercase hover:text-softBlue">
+          </NavLink>
+          <NavLink to={"/"} className="uppercase hover:text-softBlue">
             FAQ
-          </a>
+          </NavLink>
         </div>
 
         {/* <!-- Social Container --> */}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Navbar.css";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
@@ -12,27 +13,30 @@ const Navbar = () => {
         {/* <!-- Logo  --> */}
         <div className="z-30">
           {/* <img src="./images/logo-bookmark.svg" alt="" id="logo" /> */}
-          <h2 className="font-bold text-3xl">
+          <NavLink to={"/"} className="font-bold text-3xl">
             Green<span className="text-lime-500">LN</span>
-          </h2>
+          </NavLink>
         </div>
         {/* <!-- Menu Items --> */}
         <div className="hidden items-center space-x-10 uppercase text-grayishBlue md:flex">
-          <a href="#features" className="tracking-widest hover:text-softBlue">
-            Features
-          </a>
-          <a href="#download" className="tracking-widest hover:text-softBlue">
+          <NavLink
+            to={"/products"}
+            className="tracking-widest hover:text-softBlue"
+          >
+            Products
+          </NavLink>
+          <NavLink to={"#"} className="tracking-widest hover:text-softBlue">
             Download
-          </a>
-          <a href="#faq" className="tracking-widest hover:text-softBlue">
+          </NavLink>
+          <NavLink to={"#"} className="tracking-widest hover:text-softBlue">
             FAQ
-          </a>
-          <a
-            href="#"
+          </NavLink>
+          <NavLink
+            to={"/cart"}
             className="px-8 py-2 text-white bg-softBlue border-2 border-softBlue rounded-lg shadow-md hover:text-softBlue hover:bg-white"
           >
-            Login
-          </a>
+            Cart
+          </NavLink>
         </div>
         {/* <!-- Hamburger Button --> */}
         <button
@@ -56,24 +60,24 @@ const Navbar = () => {
             fixed inset-0 z-20 flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 opacity-90 bg-veryDarkBlue`}
       >
         <div className="w-full py-3 text-center">
-          <a href="#features" className="block hover:text-softBlue">
-            Features
-          </a>
+          <NavLink to={"/products"} className="block hover:text-softBlue">
+            Products
+          </NavLink>
         </div>
         <div className="w-full py-3 text-center">
-          <a href="#download" className="block hover:text-softBlue">
+          <NavLink to={"#"} className="block hover:text-softBlue">
             Download
-          </a>
+          </NavLink>
         </div>
         <div className="w-full py-3 text-center">
-          <a href="#faq" className="block hover:text-softBlue">
+          <NavLink to={"#"} className="block hover:text-softBlue">
             FAQ
-          </a>
+          </NavLink>
         </div>
         <div className="w-full py-3 text-center">
-          <a href="" className="block hover:text-softBlue">
-            Login
-          </a>
+          <NavLink to={"#"} className="block hover:text-softBlue">
+            Cart
+          </NavLink>
         </div>
       </div>
     </nav>

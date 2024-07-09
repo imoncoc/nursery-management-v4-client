@@ -19,19 +19,13 @@ const Hero = () => {
 
           {/* <!-- Buttons Container  --> */}
           <div className="flex items-center justify-center w-full space-x-4 lg:justify-start">
-            <a
-              href="#"
-              className="p-4 text-sm font-semibold text-white bg-softLime rounded shadow-md border-2 border-softLime md:text-base hover:bg-white hover:text-softLime"
-            >
+            <button className="p-4 text-sm font-semibold text-white bg-softLime rounded shadow-md border-2 border-softLime md:text-base hover:bg-white hover:text-softLime">
               Get it On Chrome
-            </a>
+            </button>
 
-            <a
-              href="#"
-              className="p-4 text-sm font-=semibold text-black bg-gray-300 rounded shadow-md border-2 border-gray-300 md:text-base hover:bg-white hover:text-gray-600"
-            >
+            <button className="p-4 text-sm font-semibold text-black bg-gray-300 rounded shadow-md border-2 border-gray-300 md:text-base hover:bg-white hover:text-gray-600">
               Get it On Firefox
-            </a>
+            </button>
           </div>
         </div>
         {/* <!-- Images --> */}

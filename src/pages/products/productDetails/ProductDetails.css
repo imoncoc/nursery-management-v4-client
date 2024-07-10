@@ -1,0 +1,9 @@
+.ant-tabs-tab {
+    color: #4a5568;
+    /* Change this to your desired color */
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #38b2ac;
+    /* Color for the active tab */
+}

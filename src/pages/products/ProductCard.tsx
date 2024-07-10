@@ -17,9 +17,7 @@ const ProductCard = ({ item }: any) => {
       style={{ width: "100%", maxWidth: 320 }}
       actions={[
         <div className="flex flex-col gap-y-4 md:gap-y-0 md:flex-row justify-between mx-4">
-          <button className="px-6 py-2 text-sm font-semibold text-white bg-softLime rounded shadow-md border-2 border-softLime md:text-base hover:bg-white hover:text-softLime">
-            Add to Cart
-          </button>
+          <button className="custom-button-primary">Add to Cart</button>
 
           <button
             onClick={() => onViewDetails(_id as string)}

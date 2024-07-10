@@ -37,7 +37,7 @@ export const baseApi = createApi({
         //   params.append("priority", priority);
         // }
         return {
-          url: `/product/${id}`,
+          url: `/products/${id}`,
           method: "GET",
           //   params: params,
         };

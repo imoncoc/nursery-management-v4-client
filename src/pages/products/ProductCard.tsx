@@ -1,11 +1,16 @@
-import { Button, Card, Rate } from "antd";
+import { Card, Rate } from "antd";
 import { TProduct } from "./Product.interface";
+import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 
 const ProductCard = ({ item }: any) => {
-  const { thumbnail, name, description, price, rating }: TProduct = item;
+  const { thumbnail, name, description, price, rating, _id }: TProduct = item;
+  const navigate = useNavigate();
   // console.log("item: ", item);
-  const onCustomButtonClick = () => {};
+  const onViewDetails = (id: string) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <Card
       hoverable
@@ -16,7 +21,10 @@ const ProductCard = ({ item }: any) => {
             Add to Cart
           </button>
 
-          <button className="px-6 py-2 text-sm font-semibold text-black bg-gray-300 rounded shadow-md border-2 border-gray-300 md:text-base hover:bg-white hover:text-gray-600">
+          <button
+            onClick={() => onViewDetails(_id as string)}
+            className="px-6 py-2 text-sm font-semibold text-black bg-gray-300 rounded shadow-md border-2 border-gray-300 md:text-base hover:bg-white hover:text-gray-600"
+          >
             View Details
           </button>
         </div>,

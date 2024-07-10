@@ -87,7 +87,7 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="w-full py-3 text-center">
-          <NavLink to={"#"} className="block hover:text-softBlue">
+          <NavLink to={"/cart"} className="block hover:text-softBlue">
             Cart
           </NavLink>
         </div>

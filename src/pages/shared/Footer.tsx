@@ -1,5 +1,13 @@
 import { NavLink } from "react-router-dom";
 
+import facebookIcon from "../../assets/images/icon-facebook.svg";
+import twitterIcon from "../../assets/images/icon-twitter.svg";
+import {
+  FacebookOutlined,
+  InstagramOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
+
 const Footer = () => {
   return (
     <footer className="py-16 bg-veryDarkBlue">
@@ -32,16 +40,13 @@ const Footer = () => {
 
         {/* <!-- Social Container --> */}
         <div className="flex space-x-10">
-          <a href="#">
-            <img
-              src="./images/icon-facebook.svg"
-              alt=""
-              className="h-6 ficon"
-            />
-          </a>
-          <a href="#">
-            <img src="./images/icon-twitter.svg" alt="" className="h-6 ficon" />
-          </a>
+          {/* <img src={facebookIcon} alt="" className="h-6 hover:bg-lime-500 " /> */}
+          <FacebookOutlined
+            className="text-2xl text-white hover:text-lime-500 cursor-pointer transition duration-500"
+            style={{}}
+          />
+          <TwitterOutlined className="text-2xl text-white hover:text-lime-500 cursor-pointer transition duration-500" />
+          <InstagramOutlined className="text-2xl text-white hover:text-lime-500 cursor-pointer transition duration-500" />
         </div>
       </div>
     </footer>

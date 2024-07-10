@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
 
-  console.log(isHamburgerMenuOpen);
   return (
     <nav className="container relative mx-auto p-6">
       {/* <!-- Flex Container For Nav Items --> */}

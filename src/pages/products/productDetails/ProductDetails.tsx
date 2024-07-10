@@ -5,13 +5,11 @@ import { Image, Rate, Tag } from "antd";
 import ProductDetailsTab from "./ProductDetailsTab";
 
 const ProductDetails = () => {
-  let { id } = useParams();
-  console.log("id: ", id);
+  const { id } = useParams();
   const {
     data,
     isSuccess: isProductSuccess,
     isLoading,
-    isFetching,
     isError,
   } = useGetProductDetailsQuery(id);
   const productData = data?.data[0];
@@ -74,20 +72,21 @@ const ProductDetails = () => {
             <p className="custom-text-details-header text-lime-500"> {name}</p>
             <p className="custom-text-details-p">{description}</p>
             {/* <p> rating: {rating}</p> */}
-            <p>
+            <div>
               <Rate
                 style={{ color: "rgb(132 204 22)" }}
                 disabled
                 allowHalf
                 defaultValue={rating}
               />
-            </p>
+            </div>
 
             <div className="flex gap-2 my-1">
-              <p>
+              <div>
                 <Tag color="#55acee">{categoriesName}</Tag>
-              </p>
-              <p className="">
+              </div>
+
+              <div className="">
                 {availabilityStock ? (
                   <Tag bordered={false} color="rgb(132 204 22)">
                     {stock} In Stock
@@ -97,7 +96,7 @@ const ProductDetails = () => {
                     Out of Stock
                   </Tag>
                 )}
-              </p>
+              </div>
             </div>
 
             <div className="mb-4 mt-2 font-semibold">

@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../redux/api/api";
 import { TProduct } from "./Product.interface";
 import ProductCard from "./ProductCard";
-import { Pagination } from "antd";
-import type { PaginationProps } from "antd";
+import { Pagination, Select } from "antd";
+import type { PaginationProps, SelectProps } from "antd";
+import { AutoComplete, Input } from "antd";
 
 const Product = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
+
+  const [searchTerm, setSearchTerm] = useState("");
   const {
     data: products,
     isSuccess: isProductSuccess,
@@ -18,6 +21,7 @@ const Product = () => {
   } = useGetProductsQuery({
     page,
     limit,
+    searchTerm,
   });
 
   useEffect(() => {
@@ -44,15 +48,27 @@ const Product = () => {
     return <div>No posts :</div>;
   }
 
-  console.log("product: ", products?.data);
-  console.log("isSuccess: ", isProductSuccess);
-  console.log("isLoading: ", isLoading);
-  console.log("isFetching: ", isFetching);
+  const filterOptions = [
+    { value: "1", label: "Search item" },
+    { value: "2", label: "Filter Item" },
+    { value: "3", label: "Sort Item" },
+  ];
 
-  console.log("page: ", page);
-  console.log("limit: ", limit);
-  console.log("total: ", total);
-  console.log("totalPage: ", totalPage);
+  // console.log("product: ", products?.data);
+  // console.log("isSuccess: ", isProductSuccess);
+  // console.log("isLoading: ", isLoading);
+  // console.log("isFetching: ", isFetching);
+
+  // console.log("page: ", page);
+  // console.log("limit: ", limit);
+  // console.log("total: ", total);
+  // console.log("totalPage: ", totalPage);
+
+  const handleSearch = (value: string) => {
+    // setOptions(value ? searchResult(value) : []);
+    console.log("Search Value: ", value);
+    setSearchTerm(value);
+  };
 
   return (
     <div className="container  mx-auto p-6 lg:flex-row lg:mb-0">
@@ -66,12 +82,40 @@ const Product = () => {
         </p>
       </div>
 
-      <div className="mt-12 flex justify-center">
-        <div className="grid md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8 ">
+      {/* SearchBar and Filter */}
+      <div className="my-8 flex justify-end gap-4">
+        <Select
+          style={{ height: "40px", width: "250px" }}
+          showSearch
+          placeholder="Search, Filter or Sort"
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          options={filterOptions}
+        />
+        <AutoComplete
+          popupMatchSelectWidth={252}
+          style={{ width: 300 }}
+          // onSelect={onSelect}
+          // onSearch={(text) => setAnotherOptions(getPanelValue(text))}
+          // onChange={onChange}
+
+          size="large"
+        >
+          <Input.Search
+            size="large"
+            onSearch={handleSearch}
+            placeholder="Search Here"
+            enterButton
+          />
+        </AutoComplete>
+      </div>
+      <div className="mt-12 flex justify-center border">
+        <div className="grid md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-x-4 lg:gap-x-8 gap-y-8 ">
           {isProductSuccess &&
             products?.data?.result.length > 0 &&
             products?.data?.result.map((item: TProduct) => (
-              <ProductCard item={item} />
+              <ProductCard key={item._id} item={item} />
             ))}
         </div>
       </div>

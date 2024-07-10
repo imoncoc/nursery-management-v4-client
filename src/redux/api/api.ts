@@ -9,12 +9,16 @@ export const baseApi = createApi({
       query: (options) => {
         console.log("API options: ", options);
         const params = new URLSearchParams();
-        if (options.page) {
+        if (options?.page) {
           params.append("page", options.page);
           console.log("API page: ", options.page);
         }
-        if (options.limit) {
+        if (options?.limit) {
           params.append("limit", options.limit);
+          // console.log("skip: ", options.skip);
+        }
+        if (options?.searchTerm) {
+          params.append("searchTerm", options.searchTerm);
           // console.log("skip: ", options.skip);
         }
 

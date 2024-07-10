@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
 const Navbar = () => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
@@ -31,8 +32,11 @@ const Navbar = () => {
           >
             Products
           </NavLink>
-          <NavLink to={"#"} className="tracking-widest hover:text-softBlue">
-            Download
+          <NavLink
+            to={"/product-and-category"}
+            className="tracking-widest hover:text-softBlue"
+          >
+            Product_And_Category_Management
           </NavLink>
           <NavLink to={"#"} className="tracking-widest hover:text-softBlue">
             FAQ
@@ -41,7 +45,7 @@ const Navbar = () => {
             to={"/cart"}
             className="px-8 py-2 text-white bg-softBlue border-2 border-softBlue rounded-lg shadow-md hover:text-softBlue hover:bg-white"
           >
-            Cart
+            <ShoppingCartOutlined className="text-2xl" />
           </NavLink>
         </div>
         {/* <!-- Hamburger Button --> */}
@@ -76,8 +80,11 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="w-full py-3 text-center">
-          <NavLink to={"#"} className="block hover:text-softBlue">
-            Download
+          <NavLink
+            to={"/product-and-category"}
+            className="block hover:text-softBlue"
+          >
+            Product And Category Management
           </NavLink>
         </div>
         <div className="w-full py-3 text-center">

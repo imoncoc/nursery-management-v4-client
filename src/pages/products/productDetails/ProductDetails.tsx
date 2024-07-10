@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetProductDetailsQuery } from "../../../redux/api/api";
 import { TProduct } from "../Product.interface";
 import { Image, Rate, Tag } from "antd";
 import ProductDetailsTab from "./ProductDetailsTab";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 const ProductDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const {
     data,
@@ -37,11 +39,8 @@ const ProductDetails = () => {
     stock,
   }: TProduct = productData;
 
-  console.log("product details: ", productData);
-  console.log("product name: ", name);
-
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto my-4">
       {productData && (
         <div className="flex flex-col md:flex-row md:justify-between w-full gap-16">
           <div className="flex-1">
@@ -113,6 +112,18 @@ const ProductDetails = () => {
       )}
       <div>
         <ProductDetailsTab {...productData} />
+      </div>
+
+      <div className="flex justify-end py-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="custom-button-secondary group"
+        >
+          <span>
+            <ArrowLeftOutlined className="me-2 group-hover:animate-ping " />
+          </span>
+          <span>Go Back</span>
+        </button>
       </div>
     </div>
   );

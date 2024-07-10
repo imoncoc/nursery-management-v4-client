@@ -1,7 +1,4 @@
 import { NavLink } from "react-router-dom";
-
-import facebookIcon from "../../assets/images/icon-facebook.svg";
-import twitterIcon from "../../assets/images/icon-twitter.svg";
 import {
   FacebookOutlined,
   InstagramOutlined,
@@ -30,8 +27,11 @@ const Footer = () => {
           <NavLink to={"/products"} className="uppercase hover:text-softBlue">
             Products
           </NavLink>
-          <NavLink to={"/#"} className="uppercase hover:text-softBlue">
-            Download
+          <NavLink
+            to={"/product-and-category"}
+            className="uppercase hover:text-softBlue"
+          >
+            Product_And_Category_Management
           </NavLink>
           <NavLink to={"/"} className="uppercase hover:text-softBlue">
             FAQ

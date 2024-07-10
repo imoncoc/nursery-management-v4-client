@@ -23,3 +23,7 @@
 .custom-button-primary {
     @apply px-6 py-2 text-sm font-semibold text-white bg-softLime rounded shadow-md border-2 border-softLime md:text-base hover:bg-white hover:text-softLime
 }
+
+.custom-button-secondary {
+    @apply px-6 py-2 text-sm font-semibold text-black bg-gray-300 rounded shadow-md border-2 border-gray-300 md:text-base hover:bg-white hover:text-gray-600
+}

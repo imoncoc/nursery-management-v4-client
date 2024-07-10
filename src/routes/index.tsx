@@ -4,6 +4,8 @@ import Product from "../pages/products/Product";
 import Hero from "../pages/shared/Hero";
 import ProductDetails from "../pages/products/productDetails/ProductDetails";
 import Cart from "../pages/cart/Cart";
+import ProductAndCategoryManagement from "../pages/productAndCategoryManagement/ProductAndCategoryManagement";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "/product-and-category",
+        element: <ProductAndCategoryManagement />,
       },
       {
         path: "/cart",

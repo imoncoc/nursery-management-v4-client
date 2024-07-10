@@ -3,7 +3,7 @@ import { useGetProductsQuery } from "../../redux/api/api";
 import { TProduct } from "./Product.interface";
 import ProductCard from "./ProductCard";
 import { Pagination, Select } from "antd";
-import type { PaginationProps, SelectProps } from "antd";
+import type { PaginationProps } from "antd";
 import { AutoComplete, Input } from "antd";
 
 const Product = () => {

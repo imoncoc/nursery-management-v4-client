@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../redux/api/api";
 import { TProduct } from "./Product.interface";
 import ProductCard from "./ProductCard";
-import { Pagination, Select } from "antd";
+import { InputNumber, Pagination, Select } from "antd";
 import type { PaginationProps } from "antd";
 import { AutoComplete, Input } from "antd";
 // import { filterItemOptions } from "./Product.utils";
+import useDebounce from "../hooks/useDebounce.ts";
 
 const Product = () => {
   const [page, setPage] = useState(1);
@@ -21,6 +22,8 @@ const Product = () => {
     name: "",
     value: "",
   });
+  const debouncedSearchTerm = useDebounce(searchTerm, 500); // 1000ms debounce
+  const debouncedFilterObject = useDebounce(filterObject, 500);
   const {
     data: products,
     isSuccess: isProductSuccess,
@@ -29,9 +32,9 @@ const Product = () => {
   } = useGetProductsQuery({
     page,
     limit,
-    searchTerm,
     sortBy,
-    filterObject,
+    searchTerm: debouncedSearchTerm,
+    filterObject: debouncedFilterObject,
   });
 
   useEffect(() => {
@@ -47,7 +50,6 @@ const Product = () => {
   ) => {
     setPage(current);
     setLimit(pageSize);
-    console.log("inside onShowSizeChange:", current, pageSize);
   };
 
   if (isLoading) {
@@ -59,7 +61,6 @@ const Product = () => {
   }
 
   const handleSortChange = (value: number) => {
-    console.log("handleSortChange", typeof value);
     setSearchItem(false);
     setFilterItem(false);
 
@@ -82,7 +83,6 @@ const Product = () => {
     }
     // setSortBy(value);
   };
-  console.log("serachItem: ", searchItem);
 
   const filterOptions = [
     { value: 0, label: "Filter Items" },
@@ -102,16 +102,6 @@ const Product = () => {
     { value: 3, label: "Rating" },
   ];
 
-  // console.log("product: ", products?.data);
-  // console.log("isSuccess: ", isProductSuccess);
-  // console.log("isLoading: ", isLoading);
-  // console.log("isFetching: ", isFetching);
-
-  // console.log("page: ", page);
-  // console.log("limit: ", limit);
-  // console.log("total: ", total);
-  // console.log("totalPage: ", totalPage);
-
   const handleSearch = (value: string) => {
     // setOptions(value ? searchResult(value) : []);
     console.log("Search Value: ", value);
@@ -119,12 +109,11 @@ const Product = () => {
   };
 
   const handleFilterItem = (value: any) => {
-    console.log("handleFilterItem: ", value);
     if (filterObject?.name?.length > 0) {
       if (filterObject?.name === "price" || filterObject?.name === "rating") {
         setFilterObject({
           ...filterObject,
-          value: Number(value),
+          value: value,
         });
       } else {
         setFilterObject({
@@ -136,7 +125,6 @@ const Product = () => {
   };
 
   const handleFilterItemChange = (value: number) => {
-    console.log("handleFilterItemChange: ", value);
     if (value === 0) {
       setFilterObject({
         ...filterObject,
@@ -159,8 +147,6 @@ const Product = () => {
       });
     }
   };
-
-  console.log("filter Object: ", filterObject);
 
   return (
     <div className="container  mx-auto p-6 lg:flex-row lg:mb-0">
@@ -191,7 +177,7 @@ const Product = () => {
             style={{ width: 300 }}
             // onSelect={onSelect}
             // onSearch={(text) => setAnotherOptions(getPanelValue(text))}
-            // onChange={onChange}
+            onChange={handleSearch}
 
             // size="large"
           >
@@ -217,7 +203,18 @@ const Product = () => {
               onChange={handleFilterItemChange}
             />
 
-            {filterObject?.name?.length > 0 && (
+            {(filterObject?.name?.length > 0 &&
+              filterObject?.name === "price") ||
+            filterObject?.name === "rating" ? (
+              <InputNumber
+                size="large"
+                onChange={handleFilterItem}
+                placeholder={filterObject?.name}
+                // enterButton
+                min={1}
+                max={filterObject?.name === "rating" ? 5 : 99999999}
+              />
+            ) : (
               <Input.Search
                 size="large"
                 onSearch={handleFilterItem}

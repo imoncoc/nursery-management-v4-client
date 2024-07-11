@@ -5,23 +5,9 @@ import {
   usePostNewProductMutation,
   useUpdateProductMutation,
 } from "../../redux/api/api";
-import {
-  Button,
-  Form,
-  Input,
-  Modal,
-  Table,
-  Checkbox,
-  InputNumber,
-  Rate,
-} from "antd";
+import { Form, Input, Modal, Table, Checkbox, InputNumber, Rate } from "antd";
 import type { FormProps } from "antd";
-import {
-  TProduct,
-  TCareInformation,
-  TAdditionalInformation,
-  TPhysicalCharacteristics,
-} from "../products/Product.interface";
+import { TProduct } from "../products/Product.interface";
 import type { GetProp, TableProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner"; // Adjust the path accordingly
@@ -51,7 +37,6 @@ const ProductAndCategoryManagementTable = () => {
 
   const {
     data: products,
-    isSuccess: isProductSuccess,
     isLoading,
     isFetching,
   } = useGetProductsQuery({
@@ -59,31 +44,10 @@ const ProductAndCategoryManagementTable = () => {
     limit,
   });
 
-  const [
-    postNewProduct,
-    {
-      isLoading: isNewPostLoading,
-      isError: isNewPostError,
-      isSuccess: isNewPostSuccess,
-    },
-  ] = usePostNewProductMutation();
-  const [
-    updateProduct,
-    {
-      isLoading: isUpdateLoading,
-      isError: isUpdateError,
-      isSuccess: isUpdateSuccess,
-    },
-  ] = useUpdateProductMutation();
+  const [postNewProduct] = usePostNewProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
 
-  const [
-    deleteProduct,
-    {
-      isLoading: isDeleleLoading,
-      isError: isDeleteError,
-      isSuccess: isDeleteSuccess,
-    },
-  ] = useDeleteProductMutation();
+  const [deleteProduct] = useDeleteProductMutation();
 
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {

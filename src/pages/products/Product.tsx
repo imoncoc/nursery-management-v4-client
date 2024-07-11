@@ -12,7 +12,8 @@ const Product = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState(0);
-  const [totalPage, setTotalPage] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const [totalPage, setTotalPage] = useState(0);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("");
@@ -40,7 +41,7 @@ const Product = () => {
   useEffect(() => {
     if (!isFetching && products) {
       setTotal(products?.data?.meta?.total);
-      setTotalPage(products?.data?.meta?.totalPage);
+      // setTotalPage(products?.data?.meta?.totalPage);
     }
   }, [isFetching]);
 

@@ -3,9 +3,14 @@ import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Badge } from "antd";
+import { useAppSelector } from "../../redux/hooks";
+import { selectCurrentCart } from "../../redux/features/cartSlice";
 
 const Navbar = () => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
+  const { products } = useAppSelector(selectCurrentCart);
+
+  console.log("selectCurrentCart: ", products);
 
   return (
     <nav className="container relative mx-auto p-6">
@@ -46,7 +51,7 @@ const Navbar = () => {
             to={"/cart"}
             className="px-8 py-2 text-white bg-softBlue border-2 border-softBlue rounded-lg shadow-md hover:text-softBlue hover:bg-white"
           >
-            <Badge count={5}>
+            <Badge count={products?.length}>
               <ShoppingCartOutlined className="text-2xl" />
             </Badge>
           </NavLink>

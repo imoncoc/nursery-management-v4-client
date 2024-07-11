@@ -4,16 +4,14 @@ import { TProduct } from "../Product.interface";
 import { Image, Rate, Tag } from "antd";
 import ProductDetailsTab from "./ProductDetailsTab";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import { useAppDispatch } from "../../../redux/hooks";
+import { addProduct } from "../../../redux/features/cartSlice";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { id } = useParams();
-  const {
-    data,
-    isSuccess: isProductSuccess,
-    isLoading,
-    isError,
-  } = useGetProductDetailsQuery(id);
+  const { data, isLoading, isError } = useGetProductDetailsQuery(id);
   const productData = data?.data[0];
 
   if (isLoading) {
@@ -39,7 +37,10 @@ const ProductDetails = () => {
     stock,
   }: TProduct = productData;
 
-  console.log("productData: ", productData);
+  const handleOnClickDetails = (productData: TProduct) => {
+    dispatch(addProduct(productData));
+    console.log("handleOnClickDetails: ", productData);
+  };
 
   return (
     <div className="container mx-auto my-4">
@@ -107,7 +108,12 @@ const ProductDetails = () => {
               </span>
             </div>
             <div>
-              <button className="custom-button-primary">Add to Cart</button>
+              <button
+                className="custom-button-primary"
+                onClick={() => handleOnClickDetails(productData)}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

@@ -29,7 +29,7 @@ const Hero = () => {
           </div>
         </div>
         {/* <!-- Images --> */}
-        <div className="relative mx-auto lg:mx-0 lg:mb-0 lg:w-1/2">
+        <div className="relative mx-auto lg:mx-0 lg:mb-0 lg:w-1/2 bg-hero-parent">
           <div className="bg-hero"></div>
 
           <img

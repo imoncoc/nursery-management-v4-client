@@ -4,6 +4,7 @@
 
 
 
+
 .custom-text-header {
     @apply text-3xl font-semibold lg:text-6xl;
 }

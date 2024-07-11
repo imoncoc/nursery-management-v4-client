@@ -1,14 +1,35 @@
 import { Card, Rate } from "antd";
 import { TProduct } from "./Product.interface";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { addProduct, selectCurrentCart } from "../../redux/features/cartSlice";
+import { toast } from "sonner";
 const { Meta } = Card;
 
 const ProductCard = ({ item }: any) => {
+  const dispatch = useAppDispatch();
   const { thumbnail, name, description, price, rating, _id }: TProduct = item;
+  const cartProducts = useAppSelector(selectCurrentCart).products;
   const navigate = useNavigate();
   // console.log("item: ", item);
   const onViewDetails = (id: string) => {
     navigate(`/product/${id}`);
+  };
+
+  // const handleOnClickDetails = (productData: TProduct) => {
+  //   console.log("handleOnClickDetails: ", productData);
+  //   dispatch(addProduct({ productData: productData }));
+  // };
+
+  const handleOnClickDetails = (productData: TProduct) => {
+    const exists = cartProducts?.some(
+      (product: any) => product._id === productData._id
+    );
+    if (!exists) {
+      dispatch(addProduct(productData));
+    } else {
+      toast.error("Already exists in the cart", { duration: 3000 });
+    }
   };
 
   return (
@@ -17,7 +38,12 @@ const ProductCard = ({ item }: any) => {
       style={{ width: "100%", maxWidth: 320 }}
       actions={[
         <div className="flex flex-col gap-y-4 md:gap-y-0 md:flex-row justify-between mx-4">
-          <button className="custom-button-primary">Add to Cart</button>
+          <button
+            className="custom-button-primary"
+            onClick={() => handleOnClickDetails(item)}
+          >
+            Add to Cart
+          </button>
 
           <button
             onClick={() => onViewDetails(_id as string)}

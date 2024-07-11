@@ -50,7 +50,7 @@ export const getColumns = ({
     width: 220,
     render: (_, product) => (
       <div className="flex gap-2">
-        <Button onClick={() => handleViewDetails(product._id)}>
+        <Button onClick={() => handleViewDetails(product._id as string)}>
           View Details
         </Button>
         <Button type="primary" onClick={() => handleUpdateItem(product)}>
@@ -58,7 +58,7 @@ export const getColumns = ({
         </Button>
         <Popconfirm
           title="Are you sure you want to delete this item?"
-          onConfirm={() => onHandleDeleteProduct(product._id)}
+          onConfirm={() => onHandleDeleteProduct(product._id as string)}
           okText="Yes"
           cancelText="No"
         >

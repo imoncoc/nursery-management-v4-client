@@ -1,4 +1,4 @@
-@media screen(lg) {
+@media screen and (min-width: 1024px) {
     .bg-hero {
         width: 2000px;
         height: 300px;

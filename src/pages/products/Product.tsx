@@ -72,7 +72,7 @@ const Product = () => {
 
   return (
     <div className="container  mx-auto p-6 lg:flex-row lg:mb-0">
-      <div className="container mx-auto mt-4 px-6">
+      <div className=" mx-auto mt-4 px-6">
         <h2 className="mb-6 text-4xl font-semibold text-center uppercase">
           Products
         </h2>
@@ -110,7 +110,7 @@ const Product = () => {
           />
         </AutoComplete>
       </div>
-      <div className="mt-12 flex justify-center border">
+      <div className="mt-12 flex justify-center">
         <div className="grid md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-x-4 lg:gap-x-8 gap-y-8 ">
           {isProductSuccess &&
             products?.data?.result.length > 0 &&

@@ -39,6 +39,8 @@ const ProductDetails = () => {
     stock,
   }: TProduct = productData;
 
+  console.log("productData: ", productData);
+
   return (
     <div className="container mx-auto my-4">
       {productData && (

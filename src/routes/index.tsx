@@ -5,6 +5,7 @@ import Hero from "../pages/shared/Hero";
 import ProductDetails from "../pages/products/productDetails/ProductDetails";
 import Cart from "../pages/cart/Cart";
 import ProductAndCategoryManagement from "../pages/productAndCategoryManagement/ProductAndCategoryManagement";
+import CategoriesName from "../pages/shared/CategoriesName";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
         element: (
           <>
             <Hero />
+            <CategoriesName />
             <Product />
           </>
         ),

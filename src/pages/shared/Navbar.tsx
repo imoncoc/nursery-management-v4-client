@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import { Badge } from "antd";
 
 const Navbar = () => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
@@ -45,7 +46,9 @@ const Navbar = () => {
             to={"/cart"}
             className="px-8 py-2 text-white bg-softBlue border-2 border-softBlue rounded-lg shadow-md hover:text-softBlue hover:bg-white"
           >
-            <ShoppingCartOutlined className="text-2xl" />
+            <Badge count={5}>
+              <ShoppingCartOutlined className="text-2xl" />
+            </Badge>
           </NavLink>
         </div>
         {/* <!-- Hamburger Button --> */}

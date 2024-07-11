@@ -70,6 +70,14 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["products"],
     }),
+    getAllProductCategoriesName: builder.query({
+      query: () => {
+        return {
+          url: `/categories-product/name`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
@@ -80,4 +88,5 @@ export const {
   usePostNewProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
+  useGetAllProductCategoriesNameQuery,
 } = baseApi;

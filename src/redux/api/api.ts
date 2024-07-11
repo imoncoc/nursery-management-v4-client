@@ -19,6 +19,17 @@ export const baseApi = createApi({
           params.append("searchTerm", options.searchTerm);
           // console.log("skip: ", options.skip);
         }
+        if (options?.sortBy) {
+          params.append("sort", options.sortBy);
+          // console.log("skip: ", options.skip);
+        }
+        if (options?.filterObject?.name && options?.filterObject?.value) {
+          params.append(
+            options?.filterObject?.name,
+            options?.filterObject?.value
+          );
+          // console.log("skip: ", options.skip);
+        }
 
         return {
           url: `/products`,

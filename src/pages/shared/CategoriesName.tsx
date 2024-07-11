@@ -6,14 +6,12 @@ type TCategoriesName = {
 };
 
 const CategoriesName = () => {
-  const {
-    data,
-    isSuccess: isProductSuccess,
-    isLoading,
-    isFetching,
-  } = useGetAllProductCategoriesNameQuery({});
+  const { data, isLoading } = useGetAllProductCategoriesNameQuery({});
 
-  console.log("CategoriesName: ", data);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="container mx-auto">
       <div className=" mx-auto mt-4 px-6">
@@ -28,7 +26,7 @@ const CategoriesName = () => {
 
       <div className="flex flex-row gap-6 my-10 flex-wrap justify-center items-center">
         {data?.data.map((item: TCategoriesName) => (
-          <div>
+          <div key={item?.categoriesName}>
             <img
               className="size-28 md:size-40 rounded-full transition-all duration-300 hover:shadow-md"
               src={item?.thumbnail}

@@ -5,6 +5,7 @@ import ProductCard from "./ProductCard";
 import { Pagination, Select } from "antd";
 import type { PaginationProps } from "antd";
 import { AutoComplete, Input } from "antd";
+// import { filterItemOptions } from "./Product.utils";
 
 const Product = () => {
   const [page, setPage] = useState(1);
@@ -13,6 +14,13 @@ const Product = () => {
   const [totalPage, setTotalPage] = useState(0);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [searchItem, setSearchItem] = useState(false);
+  const [filterItem, setFilterItem] = useState(false);
+  const [filterObject, setFilterObject] = useState({
+    name: "",
+    value: "",
+  });
   const {
     data: products,
     isSuccess: isProductSuccess,
@@ -22,6 +30,8 @@ const Product = () => {
     page,
     limit,
     searchTerm,
+    sortBy,
+    filterObject,
   });
 
   useEffect(() => {
@@ -48,10 +58,48 @@ const Product = () => {
     return <div>No posts :</div>;
   }
 
+  const handleSortChange = (value: number) => {
+    console.log("handleSortChange", typeof value);
+    setSearchItem(false);
+    setFilterItem(false);
+
+    if (value === 7) {
+      setSortBy("-price");
+    } else if (value === 6) {
+      setSortBy("price");
+    } else if (value === 5) {
+      setSortBy("-name");
+    } else if (value === 4) {
+      setSortBy("name");
+    } else if (value === 3) {
+      setSortBy("-rating");
+    } else if (value === 2) {
+      setSortBy("rating");
+    } else if (value === 1) {
+      setSearchItem(true);
+    } else if (value === 0) {
+      setFilterItem(true);
+    }
+    // setSortBy(value);
+  };
+  console.log("serachItem: ", searchItem);
+
   const filterOptions = [
-    { value: "1", label: "Search item" },
-    { value: "2", label: "Filter Item" },
-    { value: "3", label: "Sort Item" },
+    { value: 0, label: "Filter Items" },
+    { value: 1, label: "Search items" },
+    { value: 2, label: "Sort by rating ascending" },
+    { value: 3, label: "Sort by rating descending" },
+    { value: 4, label: "Sort by name ascending" },
+    { value: 5, label: "Sort by name descending" },
+    { value: 6, label: "Sort by price low to high" },
+    { value: 7, label: "Sort by price high to low" },
+  ];
+
+  const filterItemOptions = [
+    { value: 0, label: "Name" },
+    { value: 1, label: "Category Name" },
+    { value: 2, label: "Price" },
+    { value: 3, label: "Rating" },
   ];
 
   // console.log("product: ", products?.data);
@@ -70,6 +118,50 @@ const Product = () => {
     setSearchTerm(value);
   };
 
+  const handleFilterItem = (value: any) => {
+    console.log("handleFilterItem: ", value);
+    if (filterObject?.name?.length > 0) {
+      if (filterObject?.name === "price" || filterObject?.name === "rating") {
+        setFilterObject({
+          ...filterObject,
+          value: Number(value),
+        });
+      } else {
+        setFilterObject({
+          ...filterObject,
+          value: value,
+        });
+      }
+    }
+  };
+
+  const handleFilterItemChange = (value: number) => {
+    console.log("handleFilterItemChange: ", value);
+    if (value === 0) {
+      setFilterObject({
+        ...filterObject,
+        name: "name",
+      });
+    } else if (value === 1) {
+      setFilterObject({
+        ...filterObject,
+        name: "categoriesName",
+      });
+    } else if (value === 2) {
+      setFilterObject({
+        ...filterObject,
+        name: "price",
+      });
+    } else if (value === 3) {
+      setFilterObject({
+        ...filterObject,
+        name: "rating",
+      });
+    }
+  };
+
+  console.log("filter Object: ", filterObject);
+
   return (
     <div className="container  mx-auto p-6 lg:flex-row lg:mb-0">
       <div className=" mx-auto mt-4 px-6">
@@ -86,29 +178,55 @@ const Product = () => {
       <div className="my-8 flex justify-end gap-4">
         <Select
           style={{ height: "40px", width: "250px" }}
-          showSearch
           placeholder="Search, Filter or Sort"
           filterOption={(input, option) =>
             (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
           }
           options={filterOptions}
+          onChange={handleSortChange}
         />
-        <AutoComplete
-          popupMatchSelectWidth={252}
-          style={{ width: 300 }}
-          // onSelect={onSelect}
-          // onSearch={(text) => setAnotherOptions(getPanelValue(text))}
-          // onChange={onChange}
+        {searchItem && (
+          <AutoComplete
+            popupMatchSelectWidth={252}
+            style={{ width: 300 }}
+            // onSelect={onSelect}
+            // onSearch={(text) => setAnotherOptions(getPanelValue(text))}
+            // onChange={onChange}
 
-          size="large"
-        >
-          <Input.Search
-            size="large"
-            onSearch={handleSearch}
-            placeholder="Search Here"
-            enterButton
-          />
-        </AutoComplete>
+            // size="large"
+          >
+            <Input.Search
+              size="large"
+              onSearch={handleSearch}
+              placeholder="Search Here"
+              enterButton
+            />
+          </AutoComplete>
+        )}
+        {filterItem && (
+          <div className="flex flex-row  gap-4">
+            <Select
+              style={{ height: "40px", width: "250px" }}
+              placeholder="Name, Category Name, Price, Rating"
+              filterOption={(input, option) =>
+                (option?.label ?? "")
+                  .toLowerCase()
+                  .includes(input.toLowerCase())
+              }
+              options={filterItemOptions}
+              onChange={handleFilterItemChange}
+            />
+
+            {filterObject?.name?.length > 0 && (
+              <Input.Search
+                size="large"
+                onSearch={handleFilterItem}
+                placeholder="Filter Here"
+                enterButton
+              />
+            )}
+          </div>
+        )}
       </div>
       <div className="mt-12 flex justify-center">
         <div className="grid md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-x-4 lg:gap-x-8 gap-y-8 ">

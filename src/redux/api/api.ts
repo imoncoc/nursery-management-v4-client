@@ -47,12 +47,28 @@ export const baseApi = createApi({
         method: "GET",
       }),
     }),
+    postNewProduct: builder.mutation({
+      query: (data) => ({
+        url: `/products`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["products"],
+    }),
     updateProduct: builder.mutation({
       query: (options) => ({
-        url: `/products/${options.id}`,
+        url: `/products/${options.currentId}`,
         method: "PATCH",
-        body: options.data,
+        body: options.updatedValues,
       }),
+      invalidatesTags: ["products"],
+    }),
+    DeleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["products"],
     }),
   }),
 });
@@ -61,5 +77,7 @@ export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
   useGetProductCategoriesQuery,
+  usePostNewProductMutation,
   useUpdateProductMutation,
+  useDeleteProductMutation,
 } = baseApi;

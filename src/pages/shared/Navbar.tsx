@@ -10,8 +10,6 @@ const Navbar = () => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const { products } = useAppSelector(selectCurrentCart);
 
-  console.log("selectCurrentCart: ", products);
-
   return (
     <nav className="container relative mx-auto p-6">
       {/* <!-- Flex Container For Nav Items --> */}

@@ -38,4 +38,5 @@ export type TProduct = {
   physicalCharacteristics: TPhysicalCharacteristics;
   careInformation: TCareInformation;
   additionalInformation: TAdditionalInformation;
+  quantity?: number;
 };

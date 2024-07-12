@@ -39,7 +39,7 @@ const ProductDetails = () => {
 
   const handleOnClickDetails = (productData: TProduct) => {
     dispatch(addProduct(productData));
-    console.log("handleOnClickDetails: ", productData);
+    // console.log("handleOnClickDetails: ", productData);
   };
 
   return (

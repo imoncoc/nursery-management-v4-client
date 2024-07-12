@@ -39,11 +39,18 @@ export const getColumns = ({
     width: 120,
   },
   {
+    title: "Stock",
+    dataIndex: "stock",
+    width: 60,
+    render: (stock: number) => <span>{stock}</span>,
+  },
+  {
     title: "Price",
     dataIndex: "price",
-    width: 120,
+    width: 80,
     render: (price: number) => <span>${price}</span>,
   },
+
   {
     title: "Action",
     align: "center",

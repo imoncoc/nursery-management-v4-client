@@ -8,8 +8,9 @@ const { Meta } = Card;
 
 const ProductCard = ({ item }: any) => {
   const dispatch = useAppDispatch();
-  const { thumbnail, name, description, price, rating, _id }: TProduct = item;
-  const cartProducts = useAppSelector(selectCurrentCart).products;
+  const { thumbnail, name, description, price, rating, _id, stock }: TProduct =
+    item;
+  // const cartProducts = useAppSelector(selectCurrentCart).products;
   const navigate = useNavigate();
   // console.log("item: ", item);
   const onViewDetails = (id: string) => {
@@ -22,14 +23,15 @@ const ProductCard = ({ item }: any) => {
   // };
 
   const handleOnClickDetails = (productData: TProduct) => {
-    const exists = cartProducts?.some(
-      (product: any) => product._id === productData._id
-    );
-    if (!exists) {
-      dispatch(addProduct(productData));
-    } else {
-      toast.error("Already exists in the cart", { duration: 3000 });
-    }
+    dispatch(addProduct(productData));
+    // const exists = cartProducts?.some(
+    //   (product: any) => product._id === productData._id
+    // );
+    // if (!exists) {
+    //   dispatch(addProduct(productData));
+    // } else {
+    //   toast.error("Already exists in the cart", { duration: 3000 });
+    // }
   };
 
   return (
@@ -41,6 +43,7 @@ const ProductCard = ({ item }: any) => {
           <button
             className="custom-button-primary"
             onClick={() => handleOnClickDetails(item)}
+            disabled={stock === 0}
           >
             Add to Cart
           </button>

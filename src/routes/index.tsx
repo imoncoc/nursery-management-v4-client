@@ -6,6 +6,7 @@ import ProductDetails from "../pages/products/productDetails/ProductDetails";
 import Cart from "../pages/cart/Cart";
 import ProductAndCategoryManagement from "../pages/productAndCategoryManagement/ProductAndCategoryManagement";
 import CategoriesName from "../pages/shared/CategoriesName";
+import MosaicView from "../pages/shared/MosaicView";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
             <Hero />
             <CategoriesName />
             <Product />
+            <MosaicView />
           </>
         ),
       },

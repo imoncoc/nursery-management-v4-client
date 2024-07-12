@@ -6,6 +6,7 @@ import ProductDetailsTab from "./ProductDetailsTab";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useAppDispatch } from "../../../redux/hooks";
 import { addProduct } from "../../../redux/features/cartSlice";
+import NoDataFound from "../../shared/NoDataFound";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const ProductDetails = () => {
   }
 
   if (!productData) {
-    return <div>No posts :</div>;
+    return <NoDataFound />;
   }
 
   const {

@@ -1,35 +1,4 @@
-import { useGetAllProductCategoriesNameQuery } from "../../redux/api/api";
-
-type TCategoriesName = {
-  categoriesName: string;
-  thumbnail: string;
-};
-
 const MosaicView = () => {
-  const { data, isLoading } = useGetAllProductCategoriesNameQuery({});
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  const getColumnSpan = (index) => {
-    // Patterns for spanning columns and rows
-    const patterns = [
-      "col-span-1 row-span-2", // 1st image
-      "col-span-2 row-span-2", // 2nd image
-      "col-span-4", // 3rd image
-      "col-span-2 row-span-2", // 4th image
-      "col-span-1 row-span-2", // 5th image
-      "col-span-2 row-span-2", // 6th image
-      "col-span-1", // 7th image
-      "col-span-1 row-span-3", // 8th image
-      "col-span-1", // 9th image
-      "col-span-2", // 10th image
-    ];
-
-    return patterns[index % patterns.length];
-  };
-
   return (
     <div className="container mx-auto my-20">
       <div className=" mx-auto my-4 px-6">

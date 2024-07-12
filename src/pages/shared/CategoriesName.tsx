@@ -1,4 +1,5 @@
 import { useGetAllProductCategoriesNameQuery } from "../../redux/api/api";
+import Loading from "./Loading";
 
 type TCategoriesName = {
   categoriesName: string;
@@ -9,7 +10,7 @@ const CategoriesName = () => {
   const { data, isLoading } = useGetAllProductCategoriesNameQuery({});
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

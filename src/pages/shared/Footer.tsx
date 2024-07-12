@@ -33,8 +33,11 @@ const Footer = () => {
           >
             Product_And_Category_Management
           </NavLink>
-          <NavLink to={"/"} className="uppercase hover:text-softBlue">
-            FAQ
+          <NavLink
+            to={"/photo-gallery"}
+            className="uppercase hover:text-softBlue"
+          >
+            Photo Gallery
           </NavLink>
         </div>
 

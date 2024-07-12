@@ -42,8 +42,11 @@ const Navbar = () => {
           >
             Product_And_Category_Management
           </NavLink>
-          <NavLink to={"#"} className="tracking-widest hover:text-softBlue">
-            FAQ
+          <NavLink
+            to={"/photo-gallery"}
+            className="tracking-widest hover:text-softBlue"
+          >
+            Photo Gallery
           </NavLink>
           <NavLink
             to={"/cart"}
@@ -94,8 +97,8 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="w-full py-3 text-center">
-          <NavLink to={"#"} className="block hover:text-softBlue">
-            FAQ
+          <NavLink to={"/photo-gallery"} className="block hover:text-softBlue">
+            Photo Gallery
           </NavLink>
         </div>
         <div className="w-full py-3 text-center">

@@ -7,6 +7,8 @@ import type { PaginationProps } from "antd";
 import { AutoComplete, Input } from "antd";
 // import { filterItemOptions } from "./Product.utils";
 import useDebounce from "../hooks/useDebounce.ts";
+import Loading from "../shared/Loading.tsx";
+import NoDataFound from "../shared/NoDataFound.tsx";
 
 const Product = () => {
   const [page, setPage] = useState(1);
@@ -54,11 +56,11 @@ const Product = () => {
   };
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   if (!products?.data) {
-    return <div>No posts :</div>;
+    return <NoDataFound/>;
   }
 
   const handleSortChange = (value: number) => {

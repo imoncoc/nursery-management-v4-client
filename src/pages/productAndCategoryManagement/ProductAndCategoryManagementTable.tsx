@@ -12,6 +12,8 @@ import type { GetProp, TableProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner"; // Adjust the path accordingly
 import { getColumns } from "./utils/columns";
+import Loading from "../shared/Loading";
+import NoDataFound from "../shared/NoDataFound";
 
 type TablePaginationConfig = Exclude<
   GetProp<TableProps, "pagination">,
@@ -236,11 +238,11 @@ const ProductAndCategoryManagementTable = () => {
   };
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   if (!products?.data) {
-    return <div>No posts :</div>;
+    return <NoDataFound />;
   }
 
   const dataSource = products?.data?.result?.map(

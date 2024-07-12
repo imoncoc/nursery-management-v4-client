@@ -7,6 +7,9 @@ import Cart from "../pages/cart/Cart";
 import ProductAndCategoryManagement from "../pages/productAndCategoryManagement/ProductAndCategoryManagement";
 import CategoriesName from "../pages/shared/CategoriesName";
 import MosaicView from "../pages/shared/MosaicView";
+import CartCheckout from "../pages/cart/CartCheckout";
+import CartOrderSuccessful from "../pages/cart/CartOrderSuccessful";
+import NotFoundRoute from "../pages/shared/NotFoundRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,10 +40,26 @@ const router = createBrowserRouter([
         element: <ProductAndCategoryManagement />,
       },
       {
+        path: "/photo-gallery",
+        element: <MosaicView />,
+      },
+      {
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "/cart-checkout",
+        element: <CartCheckout />,
+      },
+      {
+        path: "/cart/order-successful",
+        element: <CartOrderSuccessful />,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundRoute />,
   },
 ]);
 

@@ -7,8 +7,11 @@ import { useEffect, useState } from "react";
 import CartWarningModal from "./CartWarningModal";
 
 const MainLayout = () => {
-  const { products } = useAppSelector(selectCurrentCart);
+  const data = useAppSelector(selectCurrentCart);
+  const { products } = data;
   const dispatch = useAppDispatch();
+
+  console.log("prestig data: ", data);
 
   const [showModal, setShowModal] = useState(true);
 

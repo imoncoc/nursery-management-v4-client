@@ -1,30 +1,63 @@
-# React + TypeScript + Vite
+# Green Leaves Nursery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- live: https://nursery-management-v4.netlify.app/
 
-Currently, two official plugins are available:
+## Introduction
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+At Green Leaves Nursery, we are committed to providing exceptional customer service and expert advice to help you create and maintain beautiful green spaces. Our user-friendly website and seamless ordering process ensure a pleasant shopping experience, from selection to delivery.
 
-## Expanding the ESLint configuration
+## Project Description
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Green Leaves Nursery is your go-to online platform for high-quality trees, shrubs, and plants. Designed for both gardening enthusiasts and professional landscapers, our extensive catalog offers detailed descriptions, care instructions, and optimal growth conditions for each plant.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Extensive Catalog: Wide variety of plants with detailed information.
+- User-Friendly Interface: Easy navigation and responsive design.
+- Fast Delivery: Receive orders within 2-7 days.
+- Expert Support: Access to knowledgeable horticulturists for advice and assistance.
+
+## Technology Stack
+
+- React: For building the user interface.
+- Redux Toolkit: For state management.
+- RTK Query: For managing API calls.
+- Ant Design: For UI components.
+- TailwindCSS: For styling and responsive design.
+
+## Installation Guideline
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** (v14.x or later)
+- **npm** (v6.x or later) or **yarn** (v1.x or later)
+- **MongoDB** (running instance)
+
+### Steps
+
+**Clone the Repository**
+
+```bash
+git clone https://github.com/imoncoc/nursery-management-v4-client
+cd nursery-management-v4-client
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Installation Steps
+
+1. npm install
+2. set up .env
+
+### Configuration
+
+1. Create a `.env` file in the root directory of the project.
+2. Add necessary configuration variables in the `.env` file.
+   Example:
+   ```bash
+    PORT=5173
+    DB_URL=your_db_connection_uri
+    API_KEY=your_api_key_here
+   ```
+3. npm run dev

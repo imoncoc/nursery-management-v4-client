@@ -1,9 +1,11 @@
 import type { FormProps } from "antd";
 import { Button, Form, Input, Select } from "antd";
-import { useAppSelector } from "../../redux/hooks";
-import { selectCurrentCart } from "../../redux/features/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { clearCart, selectCurrentCart } from "../../redux/features/cartSlice";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useUpdateStockByQuantityProductsMutation } from "../../redux/api/api";
+import Loading from "../shared/Loading";
 
 const { Option } = Select;
 
@@ -12,19 +14,37 @@ type FieldType = {
   phoneNumber?: string;
   address?: string;
   payment?: string;
-  password?: string;
-  remember?: string;
 };
 
 const CartCheckout = () => {
   const { products } = useAppSelector(selectCurrentCart);
   const navigate = useNavigate();
+  const [updateStockByQuantityProducts, { isSuccess, isError, isLoading }] =
+    useUpdateStockByQuantityProductsMutation();
+  const dispatch = useAppDispatch();
 
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+  const getStock = products?.map((item) => ({
+    id: item?._id,
+    quantity: item?.quantity,
+  }));
+
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
     toast.success("Successfully ordered.");
+    await updateStockByQuantityProducts(getStock);
     console.log("Success:", values);
-    navigate("/cart/order-successful");
   };
+
+  if (isLoading) {
+    <Loading />;
+  }
+  if (isSuccess) {
+    dispatch(clearCart());
+    navigate("/cart/order-successful");
+  }
+
+  if (isError) {
+    toast.error("Order failed, try again.");
+  }
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
@@ -115,11 +135,13 @@ const CartCheckout = () => {
               </div>
             </div>
 
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
-            </Form.Item>
+            <div className="flex justify-end px-6">
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+            </div>
           </Form>
         </div>
       </div>

@@ -112,8 +112,11 @@ const ProductDetails = () => {
               <button
                 className="custom-button-primary"
                 onClick={() => handleOnClickDetails(productData)}
+                disabled={stock === 0 || availabilityStock === false}
               >
-                Add to Cart
+                {stock === 0 || availabilityStock === false
+                  ? "Stock out"
+                  : "Add to Cart"}
               </button>
             </div>
           </div>

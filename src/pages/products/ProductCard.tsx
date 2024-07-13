@@ -1,15 +1,22 @@
 import { Card, Rate } from "antd";
 import { TProduct } from "./Product.interface";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addProduct, selectCurrentCart } from "../../redux/features/cartSlice";
-import { toast } from "sonner";
+import { useAppDispatch } from "../../redux/hooks";
+import { addProduct } from "../../redux/features/cartSlice";
 const { Meta } = Card;
 
 const ProductCard = ({ item }: any) => {
   const dispatch = useAppDispatch();
-  const { thumbnail, name, description, price, rating, _id, stock }: TProduct =
-    item;
+  const {
+    thumbnail,
+    name,
+    description,
+    price,
+    rating,
+    _id,
+    stock,
+    availabilityStock,
+  }: TProduct = item;
   // const cartProducts = useAppSelector(selectCurrentCart).products;
   const navigate = useNavigate();
   // console.log("item: ", item);
@@ -43,9 +50,11 @@ const ProductCard = ({ item }: any) => {
           <button
             className="custom-button-primary"
             onClick={() => handleOnClickDetails(item)}
-            disabled={stock === 0}
+            disabled={stock === 0 || availabilityStock === false}
           >
-            Add to Cart
+            {stock === 0 || availabilityStock === false
+              ? "Stock out"
+              : "Add to Cart"}
           </button>
 
           <button
